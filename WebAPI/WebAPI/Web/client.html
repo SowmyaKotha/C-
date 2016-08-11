@@ -17,8 +17,8 @@
                 var urlString = "/api/math/";
 
                 switch (id) {
-                    case 'btnAdd':
-                        urlString = urlString + "Add/?" + arg;
+                    case 'btnState':
+                        urlString = urlString + "State/?" + arg;
                         break;
                    
                     default:
@@ -47,7 +47,7 @@
 </head>
 <body>
     <div style="text-align:center">
-        <h2>Calculator client - JQuery</h2>
+        <h2> Statechart client</h2>
 
         <!-- Number type is not supported in IE9 and prior versions -->
         Please enter SignalX(0 or 1) :   <input type="text"
@@ -56,7 +56,7 @@
                                        id="txtValue2" min="5" max="100"><br /><br>
         Result from Next State Y : <input type="text"
                                               id="txtResult" disabled /><br /><br>
-        <input type="button" value="Add" id="btnAdd">
+        <input type="button" value="Next State?" id="btnState">
         
 
     </div>

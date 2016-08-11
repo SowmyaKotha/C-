@@ -10,7 +10,7 @@ namespace WebAPI.Controllers
     public class MathController : ApiController
     {
         [HttpGet]
-        public string Add(string SignalX, string stateX)
+        public string State(string SignalX, string stateX)
         {
             string a="";
             if (stateX == "Y=1" && SignalX == "1")
