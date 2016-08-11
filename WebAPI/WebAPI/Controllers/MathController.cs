@@ -13,28 +13,27 @@ namespace WebAPI.Controllers
         public string State(string SignalX, string initialstateX, string initialstateY)
         {
             string nextstateY="";
-            if (initialstateX == "1")
-            {
-                if (initialstateY == "0" && SignalX == "0")
+            
+                if (initialstateX=="1"&& initialstateY == "0" && SignalX == "0")
                 {
                     nextstateY = "You are in the same state!";
                 }
                 else
                 {
-                    if (initialstateY == "0" && SignalX == "1")
+                    if (initialstateX == "1" && initialstateY == "0" && SignalX == "1")
                     {
                         nextstateY = "You are in Y=1 state";
                     }
 
                     else
                     {
-                        if (initialstateY == "1" && SignalX == "1")
+                        if (initialstateX == "1" && initialstateY == "1" && SignalX == "1")
                         {
                             nextstateY = "You are in same state";
                         }
                         else
                         {
-                            if(initialstateY=="1"&& SignalX == "0")
+                            if(initialstateX == "1" && initialstateY =="1"&& SignalX == "0")
                             {
                                 nextstateY = "You are in Y=0 state";
                             }
@@ -42,11 +41,7 @@ namespace WebAPI.Controllers
                     }
                 }
 
-            }
-            else
-            {
-                nextstateY = "Sorry! You are in wrong state to make transition";
-            }
+            
            
 
 
