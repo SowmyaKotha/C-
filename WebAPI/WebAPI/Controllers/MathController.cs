@@ -5,44 +5,52 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace WebAPI.Controllers
+namespace WebAPI4.Controllers
 {
-    public class MathController : ApiController
+    public class StateController : ApiController
     {
         [HttpGet]
         public string State(string SignalX, string initialstateX, string initialstateY)
         {
-            string nextstateY="";
-            
-                if (initialstateX=="1"&& initialstateY == "0" && SignalX == "0")
+
+            string nextstateY = "";
+
+            if (initialstateX == "1" && initialstateY == "0" && SignalX == "0")
+            {
+                nextstateY = "You are in the same state (Y=0)";
+            }
+            else
+            {
+                if (initialstateX == "1" && initialstateY == "0" && SignalX == "1")
                 {
-                    nextstateY = "You are in the same state!";
+                    nextstateY = "You are in Y=1 state";
                 }
+
                 else
                 {
-                    if (initialstateX == "1" && initialstateY == "0" && SignalX == "1")
+                    if (initialstateX == "1" && initialstateY == "1" && SignalX == "1")
                     {
-                        nextstateY = "You are in Y=1 state";
+                        nextstateY = "You are in same state (Y=1)";
                     }
-
                     else
                     {
-                        if (initialstateX == "1" && initialstateY == "1" && SignalX == "1")
+                        if (initialstateX == "1" && initialstateY == "1" && SignalX == "0")
                         {
-                            nextstateY = "You are in same state";
+                            nextstateY = "You are in Y=0 state";
                         }
                         else
                         {
-                            if(initialstateX == "1" && initialstateY =="1"&& SignalX == "0")
+                            if (initialstateX == "0")
                             {
-                                nextstateY = "You are in Y=0 state";
+                                nextstateY = "Sorry! Can't make a transition!";
                             }
                         }
                     }
                 }
+            }
 
-            
-           
+
+
 
 
 
@@ -50,7 +58,7 @@ namespace WebAPI.Controllers
 
         }
 
-       
+
 
         [HttpGet]
         public string Get()
@@ -58,147 +66,5 @@ namespace WebAPI.Controllers
             return "default";
         }
     }
-    //class Controller
-    //{
-    //    private string initialstateX;
-    //    private string initialstateY;
-    //    private char SignalX;
-    //    private bool finalState = false;
-
-    //    public Controller()
-    //    {
-    //        eventA();
-    //        // goStateX();
-
-    //        //goStateQ();
-    //        //initialize
-
-
-
-    //    }
-
-    //    override public string ToString()
-    //    {
-
-    //        return "state of X = " + stateOfX + "  state of Y = " + stateOfY;
-
-
-    //    }
-
-    //    /// 
-
-    //    /// State entry routines
-    //    /// 
-
-    //    private void goStateX()
-    //    {
-    //        stateOfX = "X=1";
-    //        Console.WriteLine("Entering \n" + stateOfX);
-
-    //    }
-
-    //    private void goStateY1()
-    //    {
-    //        stateOfY = "1";
-    //        Console.WriteLine("Entering 'Y'" + stateOfY);
-
-
-    //    }
-    //    private void goStateY0()
-    //    {
-    //        stateOfY = "0";
-    //        Console.WriteLine("Entering 'Y'\n" + stateOfY);
-    //        // return stateOfX;
-    //    }
-    //    private void goStateFinal()
-    //    {
-    //        finalState = true;
-    //    }
-
-    //    public string eventA()
-    //    {
-    //        // goStateY0();
-    //        if (stateOfX == "X=1")
-    //        {
-    //            Console.WriteLine("Please Enter the initial state of Y");
-    //            stateOfY = Console.ReadLine();
-    //            if (stateOfY == "0")
-    //            {
-    //                Console.WriteLine("Please Enter the SignalX value");
-    //                SignalX = Convert.ToChar(Console.ReadLine());
-    //                if (SignalX == '0')
-    //                {
-    //                    goStateY0();
-    //                    Console.WriteLine("In 'Y'=0");
-    //                    Console.WriteLine("In 'Y with SignalX =0");
-    //                }
-    //                else
-    //                {
-    //                    //Console.WriteLine("Please Enter the SignalX value");
-    //                    if (SignalX == '1')
-    //                    {
-
-    //                        goStateY1();
-    //                        Console.WriteLine("In 'Y'=1\n with SignalX=1");
-    //                    }
-    //                    // Console.ReadLine();
-    //                }
-
-    //            }
-    //            else
-    //            {
-    //                //if (stateOfU == "X")
-    //                // {
-    //                //Console.WriteLine("Please Enter the initial state");
-    //                // stateOfX = Console.ReadLine();
-    //                if (stateOfY == "1")
-    //                {
-    //                    Console.WriteLine("Please Enter the SignalX value");
-    //                    SignalX = Convert.ToChar(Console.ReadLine());
-    //                    if (SignalX == '0')
-    //                    {
-    //                        goStateY0();
-    //                        Console.WriteLine("In 'Y'=0 with SignalX =0");
-    //                        //Console.ReadLine();
-    //                    }
-    //                    else
-    //                    {
-    //                        //Console.WriteLine("Please Enter the SignalX value");
-    //                        if (SignalX == '1')
-    //                        {
-    //                            goStateY1();
-    //                            Console.WriteLine("In 'Y'=1\n with SignalX=1");
-    //                            //Console.ReadLine();
-    //                        }
-    //                    }
-    //                }
-    //                //  }
-    //                //goStateP();
-    //                //goStateQ();
-
-
-    //            }
-    //        }
-    //        return stateOfY;
-    //    }
-
-
-
-
-    //    public void eventF()
-    //    {
-    //        if (stateOfX == "X=1")
-    //        {
-    //            goStateFinal();
-    //        }
-    //        else
-    //        {
-    //            Console.WriteLine("Event F ignored");
-    //        }
-    //    }
-    //    public bool IsFinalState()
-    //    {
-    //        return finalState;
-    //    }
-    //}
 }
+
