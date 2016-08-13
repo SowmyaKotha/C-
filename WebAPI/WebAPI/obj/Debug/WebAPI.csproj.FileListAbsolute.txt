@@ -39,3 +39,6 @@ c:\users\sowmya\documents\visual studio 2015\Projects\WebAPI\WebAPI\bin\System.W
 c:\users\sowmya\documents\visual studio 2015\Projects\WebAPI\WebAPI\obj\Debug\WebAPI.dll
 c:\users\sowmya\documents\visual studio 2015\Projects\WebAPI\WebAPI\obj\Debug\WebAPI.pdb
 C:\Users\Sowmya\Documents\Visual Studio 2015\Projects\WebAPI\WebAPI\obj\Debug\WebAPI.csprojResolveAssemblyReference.cache
+C:\Users\Sowmya\Documents\Visual Studio 2015\Projects\WebAPI\WebAPI\bin\System.Web.Cors.dll
+C:\Users\Sowmya\Documents\Visual Studio 2015\Projects\WebAPI\WebAPI\bin\System.Web.Http.Cors.dll
+C:\Users\Sowmya\Documents\Visual Studio 2015\Projects\WebAPI\WebAPI\bin\System.Web.Http.Cors.xml

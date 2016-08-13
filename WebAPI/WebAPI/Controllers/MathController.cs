@@ -4,11 +4,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace WebAPI4.Controllers
 {
     public class StateController : ApiController
     {
+        [EnableCors(origins: "*", headers: "*", methods: "GET")]
         [HttpGet]
         public string State(string SignalX, string initialstateX, string initialstateY)
         {
