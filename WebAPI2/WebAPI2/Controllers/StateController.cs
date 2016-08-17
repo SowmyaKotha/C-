@@ -15,42 +15,100 @@ namespace WebAPI2.Controllers
 
             string nextstateZ = "";
 
-            if (initialstateX == "1" && initialstateY == "0" && SignalX == "0" && SignalY == " " && initialstateZ == " ")
+            if (initialstateX == "1" && initialstateY == "0" && SignalX == "0" && SignalY == "0" && initialstateZ == "0")
             {
-                nextstateZ = "You are in the same state (Y=0)";
+                nextstateZ = "You are in the same 100 state";
             }
             else
             {
-                if (initialstateX == "1" && initialstateY == "0" && SignalX == "1" && SignalY == " " && initialstateZ == " ")
+                if (initialstateX == "1" && initialstateY == "0" && SignalX == "0" && SignalY == "1" && initialstateZ == "0")
                 {
-                    nextstateZ = "You are in Y=1 state";
+                    nextstateZ = "You are in the same 100 state";
                 }
 
                 else
                 {
-                    if (initialstateX == "1" && initialstateY == "1" && SignalX == "1" && SignalY == "0" && initialstateZ == "0")
+                    if (initialstateX == "1" && initialstateY == "0" && SignalX == "1" && (SignalY == "0"|| SignalY=="1") && initialstateZ == "0")
                     {
-                        nextstateZ = "You are in same state (Z=0)";
+                        nextstateZ = "You are in 110 state";
+
                     }
+                   
                     else
                     {
-                        if (initialstateX == "1" && initialstateY == "1" && SignalX == "1" && SignalY == "1" && initialstateZ == "0")
+                        if (initialstateX == "1" && initialstateY == "0" && SignalX == "0" && (SignalY == "0" || SignalY == "1") && initialstateZ == "1")
                         {
-                            nextstateZ = "You are in Z=1 state";
+                            nextstateZ = "You are in 100 state";
                         }
                         else
                         {
-                            if (initialstateX == "1" && initialstateY == "1" && SignalX == "1" && SignalY == "0" && initialstateZ == "1")
+                            if (initialstateX == "1" && initialstateY == "1" && SignalX == "0" && SignalY == "0"  && initialstateZ == "0")
                             {
-                                nextstateZ = "You are in Z=0 state";
+                                nextstateZ = "You are in 100 state";
                             }
                             else
                             {
-                                if (initialstateX == "1" && initialstateY == "1" && SignalX == "1" && SignalY == "1" && initialstateZ == "1")
+                                if (initialstateX == "1" && initialstateY == "1" && SignalX == "0" && SignalY == "1" && initialstateZ == "0")
                                 {
-                                    nextstateZ = "You are in Z=1 state";
+                                    nextstateZ = "You are in 101 state";
+                                }
+                                else
+                                {
+                                    if (initialstateX == "1" && initialstateY == "1" && SignalX == "1" && SignalY == "0" && initialstateZ == "0")
+                                    {
+                                        nextstateZ = "You are in 110 state";
+                                    }
+                                    else
+                                    {
+                                        if (initialstateX == "1" && initialstateY == "1" && SignalX == "1" && SignalY == "1" && initialstateZ == "0")
+                                        {
+                                            nextstateZ = "You are in 111 state";
+                                        }
+                                        else
+                                        {
+                                            if (initialstateX == "1" && initialstateY == "1" && SignalX == "0" && SignalY == "0" && initialstateZ == "1")
+                                            {
+                                                nextstateZ = "You are in 100 state";
+                                            }
+                                            else
+                                            {
+                                                if (initialstateX == "1" && initialstateY == "1" && SignalX == "0" && SignalY == "1" && initialstateZ == "1")
+                                                {
+                                                    nextstateZ = "You are in 101 state";
+                                                }
+                                                else
+                                                {
+                                                    if (initialstateX == "1" && initialstateY == "1" && SignalX == "1" && SignalY == "0" && initialstateZ == "1")
+                                                    {
+                                                        nextstateZ = "You are in 110 state";
+                                                    }
+                                                    else
+                                                    {
+                                                        if (initialstateX == "1" && initialstateY == "1" && SignalX == "1" && SignalY == "1" && initialstateZ == "1")
+                                                        {
+                                                            nextstateZ = "You are in 111 state";
+                                                        }
+                                                        else
+                                                        {
+                                                            if (initialstateX == "0")
+                                                            {
+                                                                nextstateZ = "You are in 000 state";
+                                                            }
+                                                            if (initialstateX == "1" && initialstateY == "0" && SignalX == "1" && (SignalY == "0" || SignalY == "1") && initialstateZ == "1")
+                                                            {
+                                                                nextstateZ = "You are in 110 state";
+
+                                                            }
+                                                        }
+                                                       
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
+
                         }
                     }
                 }
@@ -65,8 +123,7 @@ namespace WebAPI2.Controllers
             return nextstateZ;
 
         }
-
-
+     
 
         [HttpGet]
         public string Get()

@@ -38,3 +38,4 @@ C:\Users\Sowmya\Documents\Visual Studio 2015\Projects\WebAPI2\WebAPI2\bin\System
 C:\Users\Sowmya\Documents\Visual Studio 2015\Projects\WebAPI2\WebAPI2\bin\System.Web.Http.WebHost.xml
 C:\Users\Sowmya\Documents\Visual Studio 2015\Projects\WebAPI2\WebAPI2\obj\Debug\WebAPI2.dll
 C:\Users\Sowmya\Documents\Visual Studio 2015\Projects\WebAPI2\WebAPI2\obj\Debug\WebAPI2.pdb
+C:\Users\Sowmya\Documents\Visual Studio 2015\Projects\WebAPI2\WebAPI2\obj\Debug\WebAPI2.csprojResolveAssemblyReference.cache
