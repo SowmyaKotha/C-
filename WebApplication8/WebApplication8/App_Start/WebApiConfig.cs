@@ -15,10 +15,14 @@ namespace WebApplication8
             config.EnableCors();
             // Web API routes
             config.MapHttpAttributeRoutes();
+            config.Routes.MapHttpRoute(
+              name: "ActionApi",
+              routeTemplate: "api/{controller}/{action}/{SignalX}/{initialstateX}/{Controlsign1}/{SignalY}/{Controlsign2}/{Controlsign3}"
+          );
 
             config.Routes.MapHttpRoute(
                name: "DefaultApi",
-               routeTemplate: "api/{controller}/{action}/{SignalX}/{initialstateX}/{Controlsign}"
+               routeTemplate: "api/{controller}/{action}/{Signal}/{initialstateX}/{Controlsign}"
            );
         }
     }

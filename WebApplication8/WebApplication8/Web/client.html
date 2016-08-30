@@ -7,7 +7,7 @@
         $(document).ready(function () {
 
             $(":button").click(function () {
-                var SignalX = $("#txtValue1").val();
+                var Signal = $("#txtValue1").val();
                 var initialstateX = $("#txtValue2").val();
                 var Controlsign = $("#txtValue3").val();
                 //var arg = "value1=" + param1 + "/value2=" + param2;
@@ -15,11 +15,14 @@
                 var id = control.id
 
                 //var urlString = "http://localhost:53460/api/math/";
-                var urlString = "http://genesc.azurewebsites.net/api/ffl/";
+                var urlString = "http://genesc.azurewebsites.net/api/gene/";
 
                 switch (id) {
                     case 'btnState':
-                        urlString = urlString + "state/" + SignalX + "/" + initialstateX + "/" + Controlsign;
+                        urlString = urlString + "state/" + Signal + "/" + initialstateX + "/" + Controlsign;
+                        break;
+                    case 'btnState1':
+                        urlString = urlString + "state1/" + SignalX + "/" + initialstateX + "/" + Controlsign;
                         break;
 
                     default:
@@ -41,7 +44,47 @@
                     }
                 });
             });
+            $(document).ready(function () {
+            $(":button").click(function () {
+                var SignalX = $("#txtValue1").val();
+                var initialstateX = $("#txtValue2").val();
+                var Controlsign1 = $("#txtValue3").val();
+                var Controlsign2 = $("#txtValue4").val();
+                var SignalY = $("#txtValue5").val();
+                var Controlsign3 = $("#txtValue6").val();
+                //var arg = "value1=" + param1 + "/value2=" + param2;
+                var control = event.target || event.srcElement;
+                var id = control.id
 
+                //var urlString = "http://localhost:53460/api/math/";
+                var urlString = "http://genesc.azurewebsites.net/api/gene/";
+
+                switch (id) {
+                    case 'btnStateFFL':
+                        urlString = urlString + "state/" + SignalX + "/" + initialstateX + "/" + Controlsign1 +"/"+ Controlsign2 +"/"+ SignalY + "/" + Controlsign3;
+                        break;
+                    
+
+                    default:
+                        urlString = urlString + "hello";
+
+                }
+
+                $.ajax({
+                    url: urlString,
+                    type: "GET",
+                    dataType: 'json',
+                    success: function (result) {
+                        $("#txtResult1").val(result);
+
+                    },
+                    error: function (xhr, status, error) {
+                        var err = eval("(" + xhr.responseText + ")");
+                        $("#txtResult1").val(err.Message)
+                    }
+                });
+            });
+            });
         });
     </script>
 
@@ -51,15 +94,39 @@
         <h2> Statechart client</h2>
 
         <!-- Number type is not supported in IE9 and prior versions -->
-        Please enter SignalX(0 or 1) :   <input type="text"
+        Please enter Signal(0 or 1) :   <input type="text"
                                                 id="txtValue1" min="5" max="100"><br><br>
         Please enter initial State of X :   <input type="text"
                                                    id="txtValue2" min="5" max="100"><br /><br>
         Please enter Activation or Inhibition : <input type="text"
                                                        id="txtValue3" min="5" max="100" /><br /><br>
-        Next State of Y : <input type="text"
+        Next State  : <input type="text"
                                  id="txtResult" disabled /><br /><br>
-        <input type="button" value="Next State?" id="btnState">
+        <input type="button" value="Next State of Y?" id="btnState">
+       
+
+
+    </div>
+    <div style="text-align:center">
+        <h2> Statechart FFL client</h2>
+
+        <!-- Number type is not supported in IE9 and prior versions -->
+        Please enter SignalX(0 or 1) :   <input type="number"
+                                               id="txtValue1" min="5" max="100"><br><br>
+        Please enter initial State of X :   <input type="number"
+                                                   id="txtValue2" min="5" max="100"><br /><br>
+        Please enter Activation or Inhibition(1) : <input type="number"
+                                                       id="txtValue3" min="5" max="100" /><br /><br>
+        Please enter Activation or Inhibition(2) : <input type="number"
+                                                          id="txtValue4" min="5" max="100" /><br /><br>
+        Please enter SignalY(0 or 1) :   <input type="number"
+                                                id="txtValue5" min="5" max="100"><br><br>
+        Please enter Activation or Inhibition(3) : <input type="number"
+                                                          id="txtValue6" min="5" max="100" /><br /><br>
+        Next State  : <input type="number"
+                             id="txtResult1" disabled /><br /><br>
+        <input type="button" value="Next State ?" id="btnStateFFL">
+
 
 
     </div>

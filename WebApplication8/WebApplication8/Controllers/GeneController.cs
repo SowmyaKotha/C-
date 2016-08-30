@@ -12,39 +12,40 @@ namespace WebApplication8.Controllers
     {
         [EnableCors(origins: "*", headers: "*", methods: "GET")]
         [HttpGet]
-        public IHttpActionResult State(string SignalX, string initialstateX, string Controlsign)
+        public IHttpActionResult State(int Signal, int initialstateX, int Controlsign)
         {
 
-            string nextstateY = "";
+            int nextstate = 2;
+            int b = Convert.ToInt32(sign());
 
-            if (initialstateX == "1" && Controlsign == "Activiation" && SignalX == "0")
+            if (initialstateX == 1 && Controlsign == 1 && Signal == 0)
             {
-                nextstateY = "You are in the same state (Y=0)";
+                nextstate = 0;
             }
             else
             {
-                if (initialstateX == "1" && Controlsign == "Activiation" && SignalX == "1")
+                if (initialstateX == 1 && Controlsign == 1 && Signal == 1)
                 {
-                    nextstateY = "You are in Y=1 state";
+                    nextstate = 1;
                 }
 
                 else
                 {
-                    if (initialstateX == "1" && Controlsign == "Inhibition" && SignalX == "1")
+                    if (initialstateX == 1 && Controlsign == 0 && Signal == 1)
                     {
-                        nextstateY = "You are in same state (Y=0)";
+                        nextstate = 0;
                     }
                     else
                     {
-                        if (initialstateX == "1" && Controlsign == "Inhibition" && SignalX == "0")
+                        if (initialstateX == 1 && Controlsign == 0 && Signal ==0)
                         {
-                            nextstateY = "You are in Y=1 state";
+                            nextstate =1;
                         }
                         else
                         {
-                            if (initialstateX == "0")
+                            if (initialstateX == 0)
                             {
-                                nextstateY = "Sorry! Can't make a transition!";
+                                nextstate = -1;
                             }
                         }
                     }
@@ -53,11 +54,15 @@ namespace WebApplication8.Controllers
 
 
 
+        int R1 = nextstate;
 
+            return Ok(R1);
 
-
-            return Ok(nextstateY);
-
+        }
+       public static int sign()
+        {
+           int A = 14;
+            return A;
         }
     }
 }
