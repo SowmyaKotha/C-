@@ -16,7 +16,7 @@ namespace WebApplication8.Controllers
         {
 
             int nextstate = 2;
-            int b = Convert.ToInt32(sign());
+           // int b = Convert.ToInt32(sign());
 
             if (initialstateX == 1 && Controlsign == 1 && Signal == 0)
             {
@@ -45,7 +45,7 @@ namespace WebApplication8.Controllers
                         {
                             if (initialstateX == 0)
                             {
-                                nextstate = -1;
+                                nextstate = 0;
                             }
                         }
                     }
@@ -59,10 +59,6 @@ namespace WebApplication8.Controllers
             return Ok(R1);
 
         }
-       public static int sign()
-        {
-           int A = 14;
-            return A;
-        }
+      
     }
 }

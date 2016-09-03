@@ -27,6 +27,7 @@ namespace WebApplication8.Controllers
             var request2 = new RestRequest("api/gene/state/" + SignalX + "/" + initialstateX + "/" + Controlsign2, Method.GET);
             IRestResponse response2 = client2.Execute(request2);
             string responseValue2 = response2.Content;
+            int res2=Convert.ToInt32(responseValue2);
             Boolean boolresponsevalue2 = Convert.ToBoolean(responseValue2);
             string initialStateY = responseValue1;
             var client3 = new RestClient("http://genesc.azurewebsites.net/");
@@ -36,7 +37,12 @@ namespace WebApplication8.Controllers
             Boolean boolresponsevalue3 = Convert.ToBoolean(responseValue3);
             Boolean finalres = boolresponsevalue2 && boolresponsevalue3;
             int finalresponse = Convert.ToInt32(finalres);
-            return Ok(finalresponse);
+            
+            int[] res = new int[2];
+            res[0] = finalresponse;
+            res[1] = res2;
+            
+            return Ok(res);
         }
 
         

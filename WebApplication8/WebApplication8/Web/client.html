@@ -35,6 +35,7 @@
                     type: "GET",
                     dataType: 'json',
                     success: function (result) {
+
                         $("#txtResult").val(result);
 
                     },
@@ -63,7 +64,7 @@
                     case 'btnStateFFL':
                         urlString = urlString + "state/" + SignalX + "/" + initialstateX + "/" + Controlsign1 +"/"+ Controlsign2 +"/"+ SignalY + "/" + Controlsign3;
                         break;
-                    
+
 
                     default:
                         urlString = urlString + "hello";
@@ -74,16 +75,79 @@
                     url: urlString,
                     type: "GET",
                     dataType: 'json',
+
                     success: function (result) {
-                        $("#txtResult1").val(result);
+
+
+                            $("#txtResult1").val(result);
+
+                            $("#txtResult2").val(result);
 
                     },
                     error: function (xhr, status, error) {
                         var err = eval("(" + xhr.responseText + ")");
                         $("#txtResult1").val(err.Message)
+                        $("#txtResult2").val(err.Message)
                     }
                 });
             });
+            });
+            $(document).ready(function () {
+                $(":button").click(function () {
+                    var SignalX1 = $("#txtValue1").val();
+                    var initialstateX = $("#txtValue2").val();
+                    var Controlsign1 = $("#txtValue3").val();
+                    var Controlsign2 = $("#txtValue4").val();
+                    var SignalY1 = $("#txtValue5").val();
+                    var Controlsign3 = $("#txtValue6").val();
+                    var SignalX2 = $("#txtValue7").val();
+                    var SignalY2 = $("#txtValue8").val();
+                    var Controlsign4 = $("#txtValue9").val();
+                    var Controlsign5 = $("#txtValue10").val();
+                    var Controlsign6 = $("#txtValue11").val();
+                    var Controlsign7 = $("#txtValue12").val();
+                    var Controlsign8 = $("#txtValue13").val();
+                    var Controlsign9 = $("#txtValue14").val();
+                    var Controlsign10 = $("#txtValue15").val();
+
+                    //var arg = "value1=" + param1 + "/value2=" + param2;
+                    var control = event.target || event.srcElement;
+                    var id = control.id
+
+                    //var urlString = "http://localhost:53460/api/math/";
+                    var urlString = "http://genesc.azurewebsites.net/api/ffl/";
+
+                    switch (id) {
+                        case 'btnStateIFFL':
+                            urlString = urlString + "state/" + SignalX1 + "/" + initialstateX + "/" + Controlsign1 + "/" + Controlsign2 + "/" + SignalY1 + "/" + Controlsign3+"/"+ SignalX2+"/"+SignalY2+"/"+Controlsign4 + "/" + Controlsign5 +"/"+ Controlsign6 + "/" + Controlsign7 +"/"+ Controlsign8 + "/" + Controlsign9 +"/"+ Controlsign10;
+                            break;
+
+
+                        default:
+                            urlString = urlString + "hello";
+
+                    }
+
+                    $.ajax({
+                        url: urlString,
+                        type: "GET",
+                        dataType: 'json',
+
+                        success: function (result) {
+
+
+                            $("#txtResult3").val(result);
+
+
+
+                        },
+                        error: function (xhr, status, error) {
+                            var err = eval("(" + xhr.responseText + ")");
+                            $("#txtResult3").val(err.Message)
+
+                        }
+                    });
+                });
             });
         });
     </script>
@@ -95,15 +159,15 @@
 
         <!-- Number type is not supported in IE9 and prior versions -->
         Please enter Signal(0 or 1) :   <input type="text"
-                                                id="txtValue1" min="5" max="100"><br><br>
+                                               id="txtValue1" min="5" max="100"><br><br>
         Please enter initial State of X :   <input type="text"
                                                    id="txtValue2" min="5" max="100"><br /><br>
         Please enter Activation or Inhibition : <input type="text"
                                                        id="txtValue3" min="5" max="100" /><br /><br>
         Next State  : <input type="text"
-                                 id="txtResult" disabled /><br /><br>
+                             id="txtResult" disabled /><br /><br>
         <input type="button" value="Next State of Y?" id="btnState">
-       
+
 
 
     </div>
@@ -112,20 +176,67 @@
 
         <!-- Number type is not supported in IE9 and prior versions -->
         Please enter SignalX(0 or 1) :   <input type="number"
-                                               id="txtValue1" min="5" max="100"><br><br>
+                                                id="txtValue1" min="5" max="100"><br><br>
         Please enter initial State of X :   <input type="number"
                                                    id="txtValue2" min="5" max="100"><br /><br>
         Please enter Activation or Inhibition(1) : <input type="number"
-                                                       id="txtValue3" min="5" max="100" /><br /><br>
+                                                          id="txtValue3" min="5" max="100" /><br /><br>
         Please enter Activation or Inhibition(2) : <input type="number"
                                                           id="txtValue4" min="5" max="100" /><br /><br>
         Please enter SignalY(0 or 1) :   <input type="number"
                                                 id="txtValue5" min="5" max="100"><br><br>
         Please enter Activation or Inhibition(3) : <input type="number"
                                                           id="txtValue6" min="5" max="100" /><br /><br>
-        Next State  : <input type="number"
-                             id="txtResult1" disabled /><br /><br>
+        Next  State Z  : <input type="number"
+                                id="txtResult1" disabled /><br /><br>
+        Next next State Z  : <input type="number"
+                                    id="txtResult2" disabled /><br /><br>
         <input type="button" value="Next State ?" id="btnStateFFL">
+
+
+
+    </div>
+
+    <div style="text-align:center">
+        <h2> Statechart Interlocked FFL client</h2>
+
+        <!-- Number type is not supported in IE9 and prior versions -->
+        Please enter SignalX1(0 or 1) :   <input type="number"
+                                                 id="txtValue1" min="5" max="100"><br><br>
+        Please enter initial State of X :   <input type="number"
+                                                   id="txtValue2" min="5" max="100"><br /><br>
+        Please enter Activation or Inhibition(1) : <input type="number"
+                                                          id="txtValue3" min="5" max="100" /><br /><br>
+        Please enter Activation or Inhibition(2) : <input type="number"
+                                                          id="txtValue4" min="5" max="100" /><br /><br>
+        Please enter SignalY1(0 or 1) :   <input type="number"
+                                                 id="txtValue5" min="5" max="100"><br><br>
+        Please enter Activation or Inhibition(3) : <input type="number"
+                                                          id="txtValue6" min="5" max="100" /><br /><br>
+        Please enter SignalX2(0 or 1) :   <input type="number"
+                                                 id="txtValue7" min="5" max="100"><br><br>
+        Please enter SignalY2(0 or 1) :   <input type="number"
+                                                 id="txtValue8" min="5" max="100"><br><br>
+        Please enter Activation or Inhibition(4) : <input type="number"
+                                                          id="txtValue9" min="5" max="100" /><br /><br>
+        Please enter Activation or Inhibition(5) : <input type="number"
+                                                          id="txtValue10" min="5" max="100" /><br /><br>
+        Please enter Activation or Inhibition(6) : <input type="number"
+                                                          id="txtValue11" min="5" max="100" /><br /><br>
+        
+        Please enter Activation or Inhibition(7) : <input type="number"
+                                                          id="txtValue12" min="5" max="100" /><br /><br>
+        Please enter Activation or Inhibition(8) : <input type="number"
+                                                          id="txtValue13" min="5" max="100" /><br /><br>
+        Please enter Activation or Inhibition(9) : <input type="number"
+                                                          id="txtValue14" min="5" max="100" /><br /><br>
+        Please enter Activation or Inhibition(10) : <input type="number"
+                                                           id="txtValue15" min="5" max="100" /><br /><br>
+
+
+        Next next State Z  : <input type="number"
+                                    id="txtResult3" disabled /><br /><br>
+        <input type="button" value="Next State ?" id="btnStateIFFL">
 
 
 
