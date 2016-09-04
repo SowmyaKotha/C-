@@ -16,7 +16,7 @@ namespace WebApplication8.Controllers
         {
 
             int nextstate = 2;
-           // int b = Convert.ToInt32(sign());
+            int b = Convert.ToInt32(sign());
 
             if (initialstateX == 1 && Controlsign == 1 && Signal == 0)
             {
@@ -52,13 +52,18 @@ namespace WebApplication8.Controllers
                 }
             }
 
+           // int[] res = new int[2];
+            //res[0] =1;
+            //res[1] = 2;
+        
 
-
-        int R1 = nextstate;
-
-            return Ok(R1);
+            return Ok(nextstate);
 
         }
-      
+       public static int sign()
+        {
+           int A = 14;
+            return A;
+        }
     }
 }

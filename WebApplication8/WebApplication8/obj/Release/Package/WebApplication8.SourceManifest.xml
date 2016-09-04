@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <sitemanifest>
-  <IisApp path="C:\Users\Sowmya\Documents\Github\C-\WebApplication8\WebApplication8\obj\Release\Package\PackageTmp" />
-  <setAcl path="C:\Users\Sowmya\Documents\Github\C-\WebApplication8\WebApplication8\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
-  <setAcl path="C:\Users\Sowmya\Documents\Github\C-\WebApplication8\WebApplication8\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+  <IisApp path="C:\Users\Sowmya\Desktop\C--11c1c67f846592b350c12ca828c617869484e9f3\C--11c1c67f846592b350c12ca828c617869484e9f3\WebApplication8\WebApplication8\obj\Release\Package\PackageTmp" />
+  <setAcl path="C:\Users\Sowmya\Desktop\C--11c1c67f846592b350c12ca828c617869484e9f3\C--11c1c67f846592b350c12ca828c617869484e9f3\WebApplication8\WebApplication8\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="C:\Users\Sowmya\Desktop\C--11c1c67f846592b350c12ca828c617869484e9f3\C--11c1c67f846592b350c12ca828c617869484e9f3\WebApplication8\WebApplication8\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
 </sitemanifest>
