@@ -16,41 +16,77 @@ namespace WebApplication8.Controllers
         {
 
             int nextstate = 2;
-            int b = Convert.ToInt32(sign());
 
-            if (initialstateX == 1 && Controlsign == 1 && Signal == 0)
+            if (Controlsign == 1)
             {
-                nextstate = 0;
-            }
-            else
-            {
-                if (initialstateX == 1 && Controlsign == 1 && Signal == 1)
+                if (initialstateX == 1)
                 {
-                    nextstate = 1;
-                }
-
-                else
-                {
-                    if (initialstateX == 1 && Controlsign == 0 && Signal == 1)
+                    if (Signal == 0)
                     {
                         nextstate = 0;
                     }
-                    else
+                    else if (Signal == 1)
                     {
-                        if (initialstateX == 1 && Controlsign == 0 && Signal ==0)
-                        {
-                            nextstate =1;
-                        }
-                        else
-                        {
-                            if (initialstateX == 0)
-                            {
-                                nextstate = 0;
-                            }
-                        }
+                        nextstate = 1;
                     }
                 }
+                else if (initialstateX == 0)
+                {
+                    nextstate = 0;
+                }
             }
+            else if (Controlsign == 0)
+            {
+                if (initialstateX == 1)
+                {
+                    if (Signal == 0)
+                    {
+                        nextstate = 1;
+                    }
+                    else if (Signal == 1)
+                    {
+                        nextstate = 0;
+                    }
+                }
+                else if (initialstateX == 0)
+                {
+                    nextstate = 0;
+                }
+            }
+
+            //if (initialstateX == 1 && Controlsign == 1 && Signal == 0)
+            //{
+            //    nextstate = 0;
+            //}
+            //else
+            //{
+            //    if (initialstateX == 1 && Controlsign == 1 && Signal == 1)
+            //    {
+            //        nextstate = 1;
+            //    }
+
+            //    else
+            //    {
+            //        if (initialstateX == 1 && Controlsign == 0 && Signal == 1)
+            //        {
+            //            nextstate = 0;
+            //        }
+            //        else
+            //        {
+            //            if (initialstateX == 1 && Controlsign == 0 && Signal ==0)
+            //            {
+            //                nextstate =1;
+            //            }
+            //            else
+            //            {
+            //                if (initialstateX == 0)
+            //                {
+            //                    nextstate = 0;
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
 
            // int[] res = new int[2];
             //res[0] =1;
@@ -60,10 +96,6 @@ namespace WebApplication8.Controllers
             return Ok(nextstate);
 
         }
-       public static int sign()
-        {
-           int A = 14;
-            return A;
-        }
+      
     }
 }

@@ -43,7 +43,7 @@ namespace WebApplication8.Controllers
             finalresult[0] = res2;
             finalresult[1] = finalresponse;
 
-            finalresult[0] = 12;
+            //finalresult[0] = 12;
             
             return Ok(finalresult);
         }
