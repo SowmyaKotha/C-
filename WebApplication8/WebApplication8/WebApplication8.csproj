@@ -131,11 +131,23 @@
     <Content Include="scripts\ai.0.22.19-build00125.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web\client.html" />
+    <Content Include="Web\client2.html" />
+    <Content Include="Web\f1.png" />
+    <Content Include="Web\f2.png" />
+    <Content Include="Web\fflclient.html" />
+    <Content Include="Web\ifflclient.html" />
+    <Content Include="Web\feedbackclient.html" />
+    <Content Include="Web\p1.jpg" />
+    <Content Include="Web\p2.jpg" />
+    <Content Include="Web\p3.jpg" />
+    <Content Include="Web\s1.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\FFLController.cs" />
     <Compile Include="Controllers\GeneController.cs" />
+    <Compile Include="Controllers\IFFLController.cs" />
+    <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -158,6 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

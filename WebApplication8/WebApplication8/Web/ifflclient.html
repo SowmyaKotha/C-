@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Caculator Client</title>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(":button").click(function () {
+                var SignalX1 = $("#txtValue10").val();
+                var initialstateX1= $("#txtValue11").val();
+                var Controlsign1 = $("#txtValue12").val();
+                var SignalY1 = $("#txtValue13").val();
+                var Controlsign2 = $("#txtValue14").val();
+                var Controlsign3 = $("#txtValue15").val();
+                var Controlsign4 = $("#txtValue16").val();
+                var Controlsign5 = $("#txtValue17").val();
+                var SignalX2 = $("#txtValue18").val();
+                var SignalY2 = $("#txtValue19").val();
+                var Controlsign6 = $("#txtValue20").val();
+                var Controlsign7 = $("#txtValue21").val();
+                var Controlsign8 = $("#txtValue22").val();
+                var Controlsign9 = $("#txtValue23").val();
+                var Controlsign10 = $("#txtValue24").val();
+                    
+                //var arg = "value1=" + param1 + "/value2=" + param2;
+                var control = event.target || event.srcElement;
+                var id = control.id
+
+                //var urlString = "http://localhost:53460/api/math/";
+                var urlString = "/api/iffl/";
+
+                switch (id) {
+                    case 'btnStateIFFL':
+                        urlString = urlString + "state/" + SignalX1 + "/" + initialstateX1 + "/" + Controlsign1+ "/"+ SignalY1 + "/" + Controlsign2 + "/" + Controlsign3 + "/" + Controlsign4 + "/" + Controlsign5 + "/" + SignalX2 + "/" + SignalY2 + "/" + Controlsign6 + "/" + Controlsign7 + "/" + Controlsign8 + "/" + Controlsign9 + "/" + Controlsign10;
+                        // urlString = urlString + "state/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1";
+                        break;
+
+
+                    default:
+                        urlString = urlString + "hello";
+
+                }
+
+                $.ajax({
+                    url: urlString,
+                    type: "GET",
+                    dataType: 'json',
+                    success: function (result) {
+                        $("#txtResult3").val(result[0]);
+                        $("#txtResult4").val(result[1]);
+                        $("#txtResult5").val(result[2]);
+                        $("#txtResult6").val(result[3]);
+                        $("#txtResult7").val(result[4]);
+                        $("#txtResult8").val(result[5]);
+
+
+                    },
+                    error: function (xhr, status, error) {
+                        var err = eval("(" + xhr.responseText + ")");
+                        $("#txtResult3").val(err.Message)
+                        $("#txtResult4").val(err.Message)
+                        $("#txtResult5").val(err.Message)
+                        $("#txtResult6").val(err.Message)
+                        $("#txtResult7").val(err.Message)
+                        $("#txtResult8").val(err.Message)
+                    }
+                });
+            });
+        });
+        
+    </script>
+    <style>
+        body{
+
+    border:2px solid black;
+    margin:0 auto;
+    }
+    h1{
+    text-align:center;
+    }
+    .sc{
+    text-align:center;
+    font-size:medium;
+    font-family:Arial;
+    }
+    .desc{
+    margin:30px;
+    font-weight:500;
+    font-size:medium;
+    font-family:Arial;
+    line-height:22px;
+    }
+    .desc img {
+    margin-left:auto;
+    margin-right:auto;
+    }
+    </style>
+</head>
+<body>
+    <div class="sc">
+        <h2>Interlocked Feedforward Loop Network Modeling</h2>
+
+        <!-- Number type is not supported in IE9 and prior versions -->
+        Please enter SignalX1(0 or 1) :   <input type="number"
+                                                 id="txtValue10" min="5" max="100"><br><br>
+        Please enter initial State of X1 :   <input type="number"
+                                                    id="txtValue11" min="5" max="100"><br /><br>
+        Please enter Activation or Inhibition(1)(X1--> Y1) : <input type="number"
+                                                          id="txtValue12" min="5" max="100" /><br /><br>
+        Please enter SignalY1(0 or 1) :   <input type="number"
+                                                 id="txtValue13" min="5" max="100"><br><br>
+        Please enter Activation or Inhibition(2) (X1--> Z1) : <input type="number"
+                                                          id="txtValue14" min="5" max="100" /><br /><br>
+
+        Please enter Activation or Inhibition(3)(Y1--> Z1)  : <input type="number"
+                                                          id="txtValue15" min="5" max="100" /><br /><br>
+        Please enter Activation or Inhibition(4)(X1-->X2) : <input type="number"
+                                                          id="txtValue16" min="5" max="100" /><br /><br>
+
+        Please enter Activation or Inhibition(5)(Y1--> X2)  : <input type="number"
+                                                          id="txtValue17" min="5" max="100" /><br /><br>
+        Please enter SignalX2(0 or 1) :   <input type="number"
+                                                 id="txtValue18" min="5" max="100"><br><br>
+        Please enter SignalY2(0 or 1) :   <input type="number"
+                                                 id="txtValue19" min="5" max="100"><br><br>
+        Please enter Activation or Inhibition(6)(X2--> Y2)  : <input type="number"
+                                                          id="txtValue20" min="5" max="100" /><br /><br>
+
+        Please enter Activation or Inhibition(7)(X2--> Z2) : <input type="number"
+                                                          id="txtValue21" min="5" max="100" /><br /><br>
+        Please enter Activation or Inhibition(8)(Y2--> Z2) : <input type="number"
+                                                          id="txtValue22" min="5" max="100" /><br /><br>
+
+        Please enter Activation or Inhibition(9)(X2-->Z3) : <input type="number"
+                                                          id="txtValue23" min="5" max="100" /><br /><br>
+        Please enter Activation or Inhibition(10)(Y2--> Z3) : <input type="number"
+                                                           id="txtValue24" min="5" max="100" /><br /><br>
+        Next State(Z1)  : <input type="number"
+                                 id="txtResult3" disabled /><br /><br>
+        Next Next State(Z1)  : <input type="number"
+                                      id="txtResult4" disabled /><br /><br>
+        Next State(Z2)  : <input type="number"
+                                 id="txtResult5" disabled /><br /><br>
+
+        Next Next State(Z2)  : <input type="number"
+                                      id="txtResult6" disabled /><br /><br>
+        Next  State (Z3) : <input type="number"
+                                  id="txtResult7" disabled /><br /><br>
+        Next Next State (Z3) : <input type="number"
+                                      id="txtResult8" disabled /><br /><br>
+        <input type="button" value="Next State ?" id="btnStateIFFL">
+
+
+
+    </div>
+    <div class="desc">
+        <p>
+            Feedforward Loop Network Statechart web service uses Gene Network Modeling web service.
+            For this statechart, We need to provide the initial state of Gene X (either 0 or 1) and the Signal Value(either 0 or 1) along with the
+            control sign which can be either Activation(1)(fig.A) or Inhibition(0)(fig.B) which results in determining the next state of Gene Y.
+
+        </p>
+        <img src="f2.png" />
+    </div>
+</body>
+
