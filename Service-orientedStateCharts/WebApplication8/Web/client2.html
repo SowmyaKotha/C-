@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Caculator Client</title>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $(":button").click(function () {
+                var Signal = $("#txtValue1").val();
+                var initialstateX = $("#txtValue2").val();
+                var Controlsign = $("#txtValue3").val();
+                //var arg = "value1=" + param1 + "/value2=" + param2;
+                var control = event.target || event.srcElement;
+                var id = control.id
+
+                //var urlString = "http://localhost:53460/api/math/";
+                var urlString = "http://genestatecharts.azurewebsites.net/api/gene/";
+
+                switch (id) {
+                    case 'btnState':
+                        urlString = urlString + "state/" + Signal + "/" + initialstateX + "/" + Controlsign;
+                        break;
+                    case 'btnState1':
+                        urlString = urlString + "state1/" + SignalX + "/" + initialstateX + "/" + Controlsign;
+                        break;
+
+                    default:
+                        urlString = urlString + "hello";
+
+                }
+
+                $.ajax({
+                    url: urlString,
+                    type: "GET",
+                    dataType: 'json',
+                    success: function (result) {
+                        $("#txtResult").val(result);
+
+                    },
+                    error: function (xhr, status, error) {
+                        var err = eval("(" + xhr.responseText + ")");
+                        $("#txtResult").val(err.Message)
+                    }
+                });
+            });
+        
+         
+        });
+    </script>
+    <style>
+         
+        body{
+            
+            border:2px solid black;
+            margin:0 auto;
+        }
+        h1{
+            text-align:center;
+        }
+        .sc{
+            text-align:center;
+             font-size:medium;
+            font-family:Arial;
+        }
+        .desc{
+            margin:30px;
+            font-weight:500;
+            font-size:medium;
+            font-family:Arial;
+            line-height:22px;
+        }
+       .desc img {
+            margin-left:auto;
+            margin-right:auto;
+        }
+
+    </style>
+   
+
+</head>
+<body>
+    <h1>Simple Gene Network Modeling</h1>
+    <div class="sc">
+        <h2></h2>
+
+        <!-- Number type is not supported in IE9 and prior versions -->
+        Please enter Signal(0 or 1) :   <input type="text"
+                                               id="txtValue1" min="5" max="100"><br><br>
+        Please enter current state of X :   <input type="text"
+                                                   id="txtValue2" min="5" max="100"><br /><br>
+        Please enter Activation(1) or Inhibition(0) : <input type="text"
+                                                       id="txtValue3" min="5" max="100" /><br /><br>
+        Next State(Y)  : <input type="text"
+                             id="txtResult" disabled /><br /><br>
+        <input type="button" value="Next State of Y?" id="btnState">
+    </div>
+    <div class="desc">
+        <p>
+            The simple regulation motif is one of the basic interaction patterns. It is composed of two genes X, Y, where X regulates Y and the interaction is mediated by a signal S. This signal can act as an inhibitor molecule or as an activator molecule that binds X and Y. As the regulation of X on Y is either activation or Inhibition and signal S can mediate the regulation with either presence (1) or absence (0), four possible types of motifs can be described.
+            A simple regulation motif is coherent if both the effects are of the same polarity, i.e. activation of Y in presence of S (i) or inhibition of Y in absence of S (ii). It is incoherent if the effects are of different polarity, i.e. inhibition of Y in presence of S (iii) or activation of Y in absence of S (iv).
+
+        </p>
+        <img src="s1.png" />
+    </div>
+
+
+    </body>
+</html>

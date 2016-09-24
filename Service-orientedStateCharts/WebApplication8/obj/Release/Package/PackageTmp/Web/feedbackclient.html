@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Caculator Client</title>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $(":button").click(function () {
+                var SignalX = $("#txtValue1").val();
+                var initialstateX = $("#txtValue2").val();
+                var Controlsign1 = $("#txtValue3").val();
+                var SignalY = $("#txtValue4").val();
+                var initialstateY = $("#txtValue5").val();
+                var Controlsign2 = $("#txtValue6").val();
+                //var arg = "value1=" + param1 + "/value2=" + param2;
+                var control = event.target || event.srcElement;
+                var id = control.id
+
+                //var urlString = "http://localhost:53460/api/math/";
+                var urlString = "http://genestatecharts.azurewebsites.net/api/feedback/";
+
+                switch (id) {
+                    case 'btnState':
+                        urlString = urlString + "feedback_state/" + SignalX + "/" + initialstateX + "/" + Controlsign1 + "/" + SignalY + "/" + initialstateY + "/" + Controlsign2;
+                        break;
+
+
+                    default:
+                        urlString = urlString + "hello";
+
+                }
+
+                $.ajax({
+                    url: urlString,
+                    type: "GET",
+                    dataType: 'json',
+                    success: function (result) {
+                        $("#txtResult").val(result[0]);
+                        $("#txtResult1").val(result[1]);
+
+                    },
+                    error: function (xhr, status, error) {
+                        var err = eval("(" + xhr.responseText + ")");
+                        $("#txtResult").val(err.Message)
+                        $("#txtResult1").val(err.Message)
+                    }
+                });
+            });
+
+
+        });
+    </script>
+    <style>
+        body {
+            border: 2px solid black;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .sc {
+            text-align: center;
+            font-size: medium;
+            font-family: Arial;
+        }
+
+        .desc {
+            margin: 30px;
+            font-weight: 500;
+            font-size: medium;
+            font-family: Arial;
+            line-height: 22px;
+        }
+
+            .desc img {
+                margin-left: auto;
+                margin-right: auto;
+            }
+    </style>
+
+
+</head>
+<body>
+    <h1>Feedback loop</h1>
+    <div class="sc">
+        <h2></h2>
+
+        <!-- Number type is not supported in IE9 and prior versions -->
+        Please enter SignalX(0 or 1) :   <input type="text"
+                                                id="txtValue1" min="5" max="100"><br><br>
+        Please enter current state of X :   <input type="text"
+                                                   id="txtValue2" min="5" max="100"><br /><br>
+        Please enter Activation(1) or Inhibition(0) : <input type="text"
+                                                       id="txtValue3" min="5" max="100" /><br /><br>
+        Please enter SignalY(0 or 1) :   <input type="text"
+                                                id="txtValue4" min="5" max="100"><br><br>
+        Please enter current state of Y :   <input type="text"
+                                                   id="txtValue5" min="5" max="100"><br /><br>
+        Please enter Activation(1) or Inhibition(0) : <input type="text"
+                                                       id="txtValue6" min="5" max="100" /><br /><br>
+
+        Next State X : <input type="text"
+                              id="txtResult1" disabled /><br /><br>
+        Next State Y : <input type="text"
+                              id="txtResult" disabled /><br /><br>
+        <input type="button" value="Next State of Y?" id="btnState">
+    </div>
+    <div class="desc">
+        <p>
+            The feedback loop motif is composed of two genes X and Y, which regulate each other, and their interactions are mediated by a signal SX  (for X regulating Y )  and SY  (for Y regulating X). Since the reciprocal regulations between X and Y can be either activations or inhibition we have different feedback loop motifs.
+            A feedback loop motif is double-positive(i) if both the reciprocal regulations of the two genes X and Y are positive, that is, X and Y activate each other. Similarly, a feedback loop motif is double-negative(ii) if X and Y inhibits each other. If the effects of the reciprocal regulations of the two genes X and Y are of different polarity, that is, X inhibits Y and Y activates X or vice versa, the feedback loop motif is said to be negative. Due to symmetry, we consider only the former negative feedback(iii) loop motif.
+        </p>
+
+        <h3>(i) Double positive feedback</h3>
+        <img src="dp1.png" style="width:200px" />
+        <img src="tp.PNG" style="width:400px" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img src="dp.png" style="width:600px" /><br />
+        <h3>(ii) Double negative feedback</h3>
+        <img src="dn1.png" style="width:200px" />
+        <img src="tn.PNG" style="width:400px" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img src="dn.png" style="width:600px" /><br />
+        <h3>(iii) Negative feedback</h3>
+        <img src="neg1.png" style="width:200px" />
+        <img src="tneg.PNG" style="width:400px" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img src="negfb.png" style="width:600px" />
+
+    </div>
+
+
+</body>
+</html>

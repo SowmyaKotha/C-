@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Caculator Client</title>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(":button").click(function () {
+                var SignalX = $("#txtValue4").val();
+                var initialstateX = $("#txtValue5").val();
+                var Controlsign1 = $("#txtValue6").val();
+                var Controlsign2 = $("#txtValue7").val();
+                var SignalY = $("#txtValue8").val();
+                var Controlsign3 = $("#txtValue9").val();
+                //var arg = "value1=" + param1 + "/value2=" + param2;
+                var control = event.target || event.srcElement;
+                var id = control.id
+
+                //var urlString = "http://localhost:53460/api/math/";
+                var urlString = "http://genestatecharts.azurewebsites.net/api/ffl/";
+
+                switch (id) {
+                    case 'btnStateFFL':
+                        urlString = urlString + "state/" + SignalX + "/" + initialstateX + "/" + Controlsign1 + "/" + Controlsign2 + "/" + SignalY + "/" + Controlsign3;
+                        // urlString = urlString + "state/1/0/0/1/1/1";
+                        break;
+
+
+                    default:
+                        urlString = urlString + "hello";
+
+                }
+
+                $.ajax({
+                    url: urlString,
+                    type: "GET",
+                    dataType: 'json',
+                    success: function (result) {
+                        $("#txtResult1").val(result[0]);
+                        $("#txtResult2").val(result[1]);
+
+                    },
+                    error: function (xhr, status, error) {
+                        var err = eval("(" + xhr.responseText + ")");
+                        $("#txtResult1").val(err.Message)
+                        $("#txtResult2").val(err.Message)
+                    }
+                });
+            });
+        });
+    </script>
+    <style>
+    body{
+
+    border:2px solid black;
+    margin:0 auto;
+    }
+    h1{
+    text-align:center;
+    }
+    .sc{
+    text-align:center;
+    font-size:medium;
+    font-family:Arial;
+    }
+    .desc{
+    margin:30px;
+    font-weight:500;
+    font-size:medium;
+    font-family:Arial;
+    line-height:22px;
+    }
+    .desc img {
+    margin-left:auto;
+    margin-right:auto;
+    }
+   
+    </style>
+
+</head>
+<body>
+    <div class="sc">
+        <h2>  FFL Network Modeling</h2>
+
+        <!-- Number type is not supported in IE9 and prior versions -->
+        Please enter SignalX(0 or 1) :   <input type="number"
+                                                id="txtValue4" min="5" max="100"><br><br>
+        Please enter current state of X :   <input type="number"
+                                                   id="txtValue5" min="5" max="100"><br /><br>
+        Please enter Activation(1) or Inhibition(0) (X-->Y) : <input type="number"
+                                                          id="txtValue6" min="5" max="100" /><br /><br>
+        Please enter Activation(1) or Inhibition(0) (X-->Z) : <input type="number"
+                                                          id="txtValue7" min="5" max="100" /><br /><br>
+        Please enter SignalY(0 or 1) : <input type="number"
+                                                id="txtValue8" min="5" max="100"><br><br>
+        Please enter Activation(1) or Inhibition(0)  (Y-->Z) : <input type="number"
+                                                          id="txtValue9" min="5" max="100" /><br /><br>
+        Next State Z  : <input type="number"
+                             id="txtResult1" disabled /><br /><br>
+        Next Next State  Z : <input type="number"
+                                  id="txtResult2" disabled /><br /><br>
+        <input type="button" value="Next State ?" id="btnStateFFL">
+
+
+
+    </div>
+    <div class="desc">
+        <p>
+            Feed-forward loops are of two types: Coherent feed-forward loop and Incoherent feed-forward loop.
+            Both coherent feed-forward loop(i) and incoherent feed-forward loop(ii)are composed of three genes X, Y, and Z where X regulates Y and Z and Y regulates only Z and the interaction is mediated by two signals SX and SY. These signals can act as an inhibitor molecule or as an activator molecule that binds X, Y and Z. The regulation of X on Y, X on Z or Y on Z can be either activation or Inhibition and signals SX and SY can mediate the regulation with either presence (1) or absence (0).
+            
+       
+        </p>
+        <h3>Coherent and Incoherent Feedforward loop</h3>
+        <img src="cffl.png" style="width:400px" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img src="icffl.png" style="width:400px" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img src="tffl.png" style="width:400px" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img src="ffl.png" style="width:300px" /> 
+        <img src="fflsc.png" style="width:400px" />
+       
+    </div>
+</body>
+</html>
